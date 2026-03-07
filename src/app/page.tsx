@@ -2,97 +2,147 @@ import Link from 'next/link';
 import EcosystemArchitecture from '@/components/EcosystemArchitecture';
 import { POSTS } from '@/lib/posts';
 
+// Pexels image URLs
+const HERO_IMAGE = 'https://images.pexels.com/photos/8828679/pexels-photo-8828679.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600';
+const GLOBE_IMAGE = 'https://images.pexels.com/photos/1098526/pexels-photo-1098526.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900';
+const PASSPORTS_IMAGE = 'https://images.pexels.com/photos/29402986/pexels-photo-29402986.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800';
+
 export default function HomePage() {
   const featured = POSTS.slice(0, 3);
 
   return (
     <>
-      {/* Hero */}
-      <section className="dark-section" style={{
-        padding: '6rem 0 5rem',
-        borderBottom: '1px solid var(--bg-dark-border)',
-      }}>
-        <div className="container">
-          <div style={{ maxWidth: '720px' }}>
-            <span className="eyebrow eyebrow-light">Borderless Media</span>
+      {/* HERO — full-bleed photo with slate overlay */}
+      <section style={{ position: 'relative', minHeight: '88vh', display: 'flex', alignItems: 'flex-end' }}>
+        {/* Background image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url(${HERO_IMAGE})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 40%',
+        }} />
+        {/* Gradient overlay: slate-blue, strong at bottom */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(26,37,53,0.45) 0%, rgba(26,37,53,0.72) 55%, rgba(26,37,53,0.95) 100%)',
+        }} />
+
+        {/* Thin terracotta top bar */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '3px',
+          background: 'var(--terra)',
+        }} />
+
+        {/* Hero content */}
+        <div className="container" style={{ position: 'relative', paddingBottom: '5rem', paddingTop: '8rem', width: '100%' }}>
+          <div style={{ maxWidth: '780px' }}>
+            <span className="eyebrow" style={{ color: 'var(--terra-muted)', marginBottom: '1.25rem' }}>
+              Borderless Media
+            </span>
             <h1 style={{
               color: 'var(--paper-on-dark)',
               marginBottom: '1.5rem',
               fontStyle: 'italic',
+              lineHeight: 1.08,
             }}>
-              Intelligence for sovereign<br />decision-making.
+              Intelligence for<br />sovereign decisions.
             </h1>
             <p style={{
               fontSize: '1.05rem',
-              color: 'var(--light)',
-              maxWidth: '560px',
+              color: 'rgba(237,232,220,0.78)',
+              maxWidth: '520px',
               marginBottom: '2.5rem',
-              lineHeight: 1.7,
+              lineHeight: 1.75,
+              fontFamily: 'var(--body)',
             }}>
-              Borderless Media publishes geopolitical research, sovereign risk indicators, and jurisdictional analysis. We improve the information layer. We do not render judgment. That happens elsewhere.
+              Geopolitical research, sovereign risk indicators, and jurisdictional analysis for internationally mobile individuals and institutions.
             </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/research" className="btn btn-dark">View Research</Link>
-              <Link href="/indicators" className="btn btn-dark" style={{ borderColor: 'var(--bg-dark-border)', color: 'var(--light)' }}>
+              <Link href="/research" className="btn-terra btn">View Research</Link>
+              <Link href="/indicators" className="btn-light btn">
                 Indicators →
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Photo credit */}
+        <div style={{
+          position: 'absolute',
+          bottom: '1rem',
+          right: '1.5rem',
+          fontFamily: 'var(--sans)',
+          fontSize: '0.6rem',
+          color: 'rgba(237,232,220,0.3)',
+          letterSpacing: '0.05em',
+        }}>
+          Photo: Lara Jameson / Pexels
+        </div>
       </section>
 
-      {/* What we are / what we aren't */}
+      {/* What we are / aren't — cream background, terracotta left rule */}
       <section style={{
-        background: 'var(--bg-dark-2)',
-        borderBottom: '1px solid var(--bg-dark-border)',
-        padding: '3rem 0',
+        background: 'var(--cream)',
+        borderBottom: '1px solid var(--rule)',
+        padding: '0',
       }}>
-        <div className="container">
+        <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '0',
-            borderLeft: '1px solid var(--bg-dark-border)',
           }}>
             {[
               {
                 label: 'We publish',
                 items: ['Sovereign risk indicators', 'Jurisdictional analysis', 'Migration policy monitoring', 'Governance failure research'],
+                accent: 'var(--slate)',
               },
               {
                 label: 'We do not publish',
                 items: ['Individualized advice', 'Program referrals', 'Tactical recommendations', 'Client-specific assessments'],
+                accent: 'var(--mid)',
               },
               {
                 label: 'The distinction',
                 items: ['Analysis is not judgment.', 'Findings are not instructions.', 'Intelligence enables decisions.', 'Decisions require counsel.'],
-                isDistinction: true,
+                accent: 'var(--terra)',
+                italic: true,
               },
-            ].map((col) => (
+            ].map((col, i) => (
               <div key={col.label} style={{
-                padding: '2rem 2rem',
-                borderRight: '1px solid var(--bg-dark-border)',
+                padding: '2.5rem 2rem',
+                borderLeft: i === 0 ? 'none' : '1px solid var(--rule)',
+                borderTop: `3px solid ${col.accent}`,
               }}>
                 <span style={{
-                  fontFamily: 'var(--mono)',
+                  fontFamily: 'var(--sans)',
                   fontSize: '0.62rem',
+                  fontWeight: 500,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: col.isDistinction ? 'var(--gold)' : 'var(--light)',
+                  color: col.accent,
                   display: 'block',
-                  marginBottom: '0.875rem',
+                  marginBottom: '1rem',
                 }}>
                   {col.label}
                 </span>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {col.items.map(item => (
                     <li key={item} style={{
-                      fontSize: '0.83rem',
-                      color: col.isDistinction ? 'var(--paper-on-dark)' : 'var(--light)',
-                      padding: '0.3rem 0',
-                      borderBottom: '1px solid var(--bg-dark-border)',
-                      fontStyle: col.isDistinction ? 'italic' : 'normal',
-                      fontFamily: col.isDistinction ? 'var(--serif)' : 'var(--sans)',
+                      fontSize: '0.85rem',
+                      color: col.italic ? 'var(--ink)' : 'var(--mid)',
+                      padding: '0.4rem 0',
+                      borderBottom: '1px solid var(--rule)',
+                      fontStyle: col.italic ? 'italic' : 'normal',
+                      fontFamily: col.italic ? 'var(--body)' : 'var(--sans)',
+                      lineHeight: 1.5,
                     }}>
                       {item}
                     </li>
@@ -104,8 +154,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured research */}
-      <section className="section" style={{ background: 'var(--paper)' }}>
+      {/* Featured research — white cards on cream */}
+      <section className="section" style={{ background: 'var(--cream-dark)' }}>
         <div className="container">
           <div style={{
             display: 'flex',
@@ -117,20 +167,21 @@ export default function HomePage() {
           }}>
             <span className="eyebrow" style={{ margin: 0 }}>Recent Research</span>
             <Link href="/research" style={{
-              fontFamily: 'var(--mono)',
-              fontSize: '0.7rem',
-              letterSpacing: '0.08em',
+              fontFamily: 'var(--sans)',
+              fontSize: '0.72rem',
+              fontWeight: 500,
+              letterSpacing: '0.07em',
               textTransform: 'uppercase',
-              color: 'var(--mid)',
+              color: 'var(--slate)',
             }}>
               All research →
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.25rem' }}>
             {featured.map((post, i) => (
               <Link href={`/posts/${post.slug}`} key={post.slug} style={{ display: 'block' }}>
-                <article className="card" style={{ height: '100%' }}>
+                <article className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
                     {post.tags.slice(0, 2).map(tag => (
                       <span key={tag} className="tag">{tag}</span>
@@ -138,13 +189,14 @@ export default function HomePage() {
                   </div>
                   <h3 style={{
                     fontFamily: 'var(--serif)',
-                    fontSize: i === 0 ? '1.25rem' : '1rem',
+                    fontSize: i === 0 ? '1.3rem' : '1.05rem',
                     marginBottom: '0.75rem',
-                    lineHeight: 1.3,
+                    lineHeight: 1.25,
+                    color: 'var(--ink)',
                   }}>
                     {post.title}
                   </h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--mid)', lineHeight: 1.55, marginBottom: '1.25rem' }}>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--mid)', lineHeight: 1.6, marginBottom: '1.5rem', fontFamily: 'var(--sans)' }}>
                     {post.summary}
                   </p>
                   <div style={{
@@ -152,11 +204,13 @@ export default function HomePage() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     marginTop: 'auto',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid var(--rule)',
                   }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--light)' }}>
+                    <span style={{ fontFamily: 'var(--sans)', fontSize: '0.65rem', color: 'var(--light)', letterSpacing: '0.04em' }}>
                       {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                     </span>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--light)' }}>
+                    <span style={{ fontFamily: 'var(--sans)', fontSize: '0.65rem', color: 'var(--terra)', letterSpacing: '0.04em' }}>
                       {post.readingTime}
                     </span>
                   </div>
@@ -167,41 +221,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What Borderless Media publishes */}
-      <section style={{ background: 'var(--paper-dark)', borderTop: '1px solid var(--rule)', padding: '5rem 0' }}>
+      {/* What we publish — image + grid */}
+      <section className="section" style={{ background: 'var(--cream)', borderTop: '1px solid var(--rule)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '5rem', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '5rem', alignItems: 'start' }}>
+            {/* Image column */}
             <div>
+              <div style={{
+                position: 'relative',
+                marginBottom: '2rem',
+              }}>
+                <img
+                  src={PASSPORTS_IMAGE}
+                  alt="European passports on a world map"
+                  style={{
+                    width: '100%',
+                    height: '320px',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
+                {/* Slate overlay strip */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'var(--slate)',
+                  padding: '0.75rem 1rem',
+                }}>
+                  <span style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '0.62rem',
+                    color: 'rgba(237,232,220,0.6)',
+                    letterSpacing: '0.05em',
+                  }}>
+                    Photo: Marta Branco / Pexels
+                  </span>
+                </div>
+              </div>
               <span className="eyebrow">What We Publish</span>
               <h2 style={{ marginBottom: '1.25rem' }}>The information layer.</h2>
-              <p style={{ color: 'var(--mid)', marginBottom: '1rem' }}>
-                Borderless Media exists because the information available to internationally mobile individuals and institutions is systematically inadequate — fragmented, commercially compromised, or designed for audiences with different risk profiles.
+              <p style={{ color: 'var(--mid)', marginBottom: '1rem', fontSize: '0.92rem' }}>
+                The information available to internationally mobile individuals is systematically inadequate — fragmented, commercially compromised, or designed for audiences with different risk profiles.
               </p>
-              <p style={{ color: 'var(--mid)', marginBottom: '2rem' }}>
+              <p style={{ color: 'var(--mid)', marginBottom: '2rem', fontSize: '0.92rem' }}>
                 We publish what we find. We do not publish what to do about it.
               </p>
               <Link href="/about" className="btn">About the publication</Link>
             </div>
+
+            {/* Grid column */}
             <div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'var(--rule)' }}>
                 {[
-                  { label: 'Sovereign Risk Research', desc: 'Multi-layer country assessments using the Borderless Sovereignty Index framework.' },
-                  { label: 'Jurisdictional Analysis', desc: 'Residency permits, citizenship programs, and tax treaty structures examined for structural integrity.' },
-                  { label: 'Migration Policy Monitoring', desc: 'Policy changes tracked across active programs, with legislative history and reversion risk assessment.' },
-                  { label: 'Governance Indicators', desc: 'Quantitative and observational indicators for institutional coherence, decoherence, and failure trajectories.' },
+                  {
+                    label: 'Sovereign Risk Research',
+                    desc: 'Multi-layer country assessments using the Borderless Sovereignty Index framework.',
+                    icon: '◈',
+                  },
+                  {
+                    label: 'Jurisdictional Analysis',
+                    desc: 'Residency permits, citizenship programs, and tax treaty structures examined for structural integrity.',
+                    icon: '◉',
+                  },
+                  {
+                    label: 'Migration Policy Monitoring',
+                    desc: 'Policy changes tracked across active programs, with legislative history and reversion risk assessment.',
+                    icon: '◎',
+                  },
+                  {
+                    label: 'Governance Indicators',
+                    desc: 'Quantitative and observational indicators for institutional coherence, decoherence, and failure trajectories.',
+                    icon: '◍',
+                  },
                 ].map((item) => (
                   <div key={item.label} style={{
-                    background: 'var(--paper)',
-                    padding: '1.5rem',
+                    background: 'white',
+                    padding: '1.75rem 1.5rem',
                   }}>
+                    <div style={{
+                      fontSize: '1.1rem',
+                      color: 'var(--terra)',
+                      marginBottom: '0.75rem',
+                      lineHeight: 1,
+                    }}>
+                      {item.icon}
+                    </div>
                     <h4 style={{
                       fontFamily: 'var(--serif)',
-                      fontSize: '0.95rem',
+                      fontSize: '1rem',
                       marginBottom: '0.5rem',
+                      color: 'var(--slate)',
                     }}>
                       {item.label}
                     </h4>
-                    <p style={{ fontSize: '0.78rem', color: 'var(--mid)', lineHeight: 1.5 }}>
+                    <p style={{ fontSize: '0.78rem', color: 'var(--mid)', lineHeight: 1.55, fontFamily: 'var(--sans)' }}>
                       {item.desc}
                     </p>
                   </div>
@@ -212,35 +327,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ecosystem Architecture */}
+      {/* Ecosystem — slate-blue dark section with globe image */}
       <section className="dark-section section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '4rem', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
             <div>
-              <span className="eyebrow eyebrow-light">Ecosystem</span>
+              <span className="eyebrow eyebrow-slate">Ecosystem</span>
               <h2 style={{ color: 'var(--paper-on-dark)', marginBottom: '1.25rem' }}>
                 Intelligence is one layer of four.
               </h2>
-              <p style={{ color: 'var(--light)', lineHeight: 1.7 }}>
-                Understanding where intelligence ends and judgment begins is not a legal disclaimer. It is the architecture of a sound decision process. Borderless Media occupies the first layer. The others are built on it.
+              <p style={{ color: 'rgba(237,232,220,0.65)', lineHeight: 1.75, marginBottom: '2rem', fontFamily: 'var(--body)', fontSize: '0.95rem' }}>
+                Understanding where intelligence ends and judgment begins is not a legal disclaimer. It is the architecture of a sound decision process. Borderless Media occupies the first layer.
               </p>
+              <Link href="/publications" className="btn-light btn">View Publications</Link>
             </div>
-            <EcosystemArchitecture dark />
+            <div>
+              <div style={{ position: 'relative' }}>
+                <img
+                  src={GLOBE_IMAGE}
+                  alt="Vintage globe showing Asia"
+                  style={{
+                    width: '100%',
+                    height: '340px',
+                    objectFit: 'cover',
+                    display: 'block',
+                    opacity: 0.7,
+                    filter: 'saturate(0.6)',
+                  }}
+                />
+                {/* Overlay with ecosystem architecture */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(135deg, rgba(26,37,53,0.85) 0%, rgba(26,37,53,0.4) 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '2rem',
+                }}>
+                  <EcosystemArchitecture dark />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Indicators teaser */}
-      <section className="section" style={{ background: 'var(--paper)', borderTop: '1px solid var(--rule)' }}>
+      {/* Indicators teaser — cream with terracotta numbers */}
+      <section className="section" style={{ background: 'var(--cream)', borderTop: '1px solid var(--rule)' }}>
         <div className="container">
-          <span className="eyebrow">Indicators</span>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '4rem', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '5rem', alignItems: 'start' }}>
             <div>
+              <span className="eyebrow">Indicators</span>
               <h2 style={{ marginBottom: '1rem' }}>The Borderless Sovereignty Index</h2>
-              <p style={{ color: 'var(--mid)', marginBottom: '2rem' }}>
+              <p style={{ color: 'var(--mid)', marginBottom: '2rem', fontSize: '0.92rem' }}>
                 A 10-layer country evaluation framework measuring institutional integrity, capital mobility, legal clarity, and sovereign risk. Updated periodically against primary source data.
               </p>
-              <Link href="/indicators" className="btn">View Indicators</Link>
+              <Link href="/indicators" className="btn-slate btn">View Indicators</Link>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
               {[
@@ -250,38 +392,52 @@ export default function HomePage() {
                 { country: 'Colombia', tier: 'Tier III', score: 51, change: '-4' },
                 { country: 'Argentina', tier: 'Tier IV', score: 28, change: '-7' },
                 { country: 'Hungary', tier: 'Tier III', score: 55, change: '-1' },
-              ].map((item) => (
-                <div key={item.country} className="card" style={{ padding: '1.25rem' }}>
-                  <div style={{
-                    fontFamily: 'var(--mono)',
-                    fontSize: '0.58rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: item.tier === 'Tier I' ? 'var(--gold)' :
-                           item.tier === 'Tier II' ? 'var(--mid)' :
-                           item.tier === 'Tier III' ? '#A63D2F' : 'var(--accent)',
-                    marginBottom: '0.4rem',
-                  }}>
-                    {item.tier}
-                  </div>
-                  <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', marginBottom: '0.5rem' }}>
-                    {item.country}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: '1.4rem', fontWeight: 500 }}>
-                      {item.score}
-                    </span>
-                    <span style={{
-                      fontFamily: 'var(--mono)',
-                      fontSize: '0.7rem',
-                      color: item.change.startsWith('-') ? 'var(--accent)' :
-                             item.change === '0' ? 'var(--light)' : '#2D7A4F',
+              ].map((item) => {
+                const tierColor = item.tier === 'Tier I' ? 'var(--slate)'
+                  : item.tier === 'Tier II' ? 'var(--slate-mid)'
+                  : item.tier === 'Tier III' ? 'var(--terra-muted)'
+                  : 'var(--terra)';
+                const changeColor = item.change.startsWith('-') ? 'var(--terra)'
+                  : item.change === '0' ? 'var(--light)'
+                  : '#2D7A4F';
+                return (
+                  <div key={item.country} className="card" style={{ padding: '1.25rem' }}>
+                    <div style={{
+                      fontFamily: 'var(--sans)',
+                      fontSize: '0.58rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: tierColor,
+                      marginBottom: '0.4rem',
                     }}>
-                      {item.change}
-                    </span>
+                      {item.tier}
+                    </div>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', marginBottom: '0.6rem', color: 'var(--ink)' }}>
+                      {item.country}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
+                      <span style={{
+                        fontFamily: 'var(--serif)',
+                        fontStyle: 'italic',
+                        fontSize: '1.6rem',
+                        color: tierColor,
+                        lineHeight: 1,
+                      }}>
+                        {item.score}
+                      </span>
+                      <span style={{
+                        fontFamily: 'var(--sans)',
+                        fontSize: '0.68rem',
+                        fontWeight: 500,
+                        color: changeColor,
+                      }}>
+                        {item.change}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

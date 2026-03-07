@@ -35,32 +35,36 @@ export default function Footer() {
   return (
     <footer style={{ background: 'var(--bg-dark)', color: 'var(--paper-on-dark)' }}>
       {/* Ecosystem strip */}
-      <div style={{ borderBottom: '1px solid var(--bg-dark-border)', padding: '3rem 0' }}>
+      <div style={{ borderBottom: '1px solid var(--bg-dark-border)', padding: '3.5rem 0' }}>
         <div className="container">
-          <span className="eyebrow eyebrow-light" style={{ marginBottom: '1.75rem' }}>The Borderless Ecosystem</span>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '2rem' }}>
+            <span className="eyebrow eyebrow-slate" style={{ marginBottom: 0 }}>The Borderless Ecosystem</span>
+            <span style={{ display: 'block', width: '2rem', height: '1px', background: 'var(--terra)', opacity: 0.6 }} />
+          </div>
           <div className="grid-4">
             {ECOSYSTEM.map((item) => (
-              <div key={item.name} style={{ opacity: item.current ? 1 : 0.7 }}>
+              <div key={item.name} style={{ opacity: item.current ? 1 : 0.65 }}>
                 <div style={{
-                  fontFamily: 'var(--mono)',
+                  fontFamily: 'var(--sans)',
                   fontSize: '0.6rem',
+                  fontWeight: 500,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: item.current ? 'var(--gold)' : 'var(--light)',
+                  color: item.current ? 'var(--terra-muted)' : 'var(--light)',
                   marginBottom: '0.35rem',
                 }}>
                   {item.role}
                 </div>
                 <Link href={item.href} style={{
                   fontFamily: 'var(--serif)',
-                  fontSize: '1rem',
+                  fontSize: '1.05rem',
                   display: 'block',
                   marginBottom: '0.4rem',
                   color: 'var(--paper-on-dark)',
                 }}>
                   {item.name}
                 </Link>
-                <p style={{ fontSize: '0.78rem', color: 'var(--light)', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '0.78rem', color: 'var(--light)', lineHeight: 1.55, fontFamily: 'var(--sans)' }}>
                   {item.desc}
                 </p>
               </div>
@@ -78,7 +82,7 @@ export default function Footer() {
           flexWrap: 'wrap',
           gap: '0.75rem',
         }}>
-          <p style={{ fontSize: '0.75rem', color: 'var(--light)' }}>
+          <p style={{ fontSize: '0.73rem', color: 'var(--light)', fontFamily: 'var(--sans)' }}>
             © {new Date().getFullYear()} Borderless Media LLC. Analysis is not advice.
           </p>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
@@ -88,11 +92,11 @@ export default function Footer() {
               { href: '/contact', label: 'Contact' },
             ].map(({ href, label }) => (
               <Link key={href} href={href} style={{
-                fontSize: '0.75rem',
+                fontSize: '0.72rem',
                 color: 'var(--light)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-                fontFamily: 'var(--mono)',
+                letterSpacing: '0.07em',
+                fontFamily: 'var(--sans)',
               }}>
                 {label}
               </Link>

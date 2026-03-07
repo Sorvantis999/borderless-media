@@ -20,8 +20,8 @@ export default function Nav() {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'var(--bg-dark)',
-      borderBottom: '1px solid var(--bg-dark-border)',
+      background: 'var(--cream)',
+      borderBottom: '1px solid var(--rule)',
       height: 'var(--nav-h)',
     }}>
       <div className="container" style={{
@@ -31,49 +31,52 @@ export default function Nav() {
         height: '100%',
       }}>
         {/* Wordmark */}
-        <Link href="/" style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem' }}>
           <span style={{
             fontFamily: 'var(--serif)',
-            fontSize: '1.15rem',
-            color: 'var(--paper-on-dark)',
-            letterSpacing: '0.02em',
+            fontSize: '1.2rem',
+            color: 'var(--slate)',
+            letterSpacing: '0.01em',
             lineHeight: 1,
           }}>
             Borderless Media
           </span>
           <span style={{
-            fontFamily: 'var(--mono)',
-            fontSize: '0.58rem',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: 'var(--light)',
-            lineHeight: 1,
-          }}>
-            Geopolitical Intelligence
-          </span>
+            width: '4px',
+            height: '4px',
+            borderRadius: '50%',
+            background: 'var(--terra)',
+            display: 'inline-block',
+            verticalAlign: 'middle',
+            marginBottom: '2px',
+          }} />
         </Link>
 
         {/* Desktop nav */}
         <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              style={{
-                fontFamily: 'var(--sans)',
-                fontSize: '0.8rem',
-                letterSpacing: '0.04em',
-                color: pathname === href ? 'var(--paper-on-dark)' : 'var(--light)',
-                textTransform: 'uppercase',
-                borderBottom: pathname === href ? '1px solid var(--gold)' : '1px solid transparent',
-                paddingBottom: '1px',
-                transition: 'color 0.15s',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-          <Link href="/contact" className="btn btn-dark" style={{ fontSize: '0.72rem', padding: '0.5em 1.2em' }}>
+          {NAV_LINKS.map(({ href, label }) => {
+            const active = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: 'var(--sans)',
+                  fontSize: '0.78rem',
+                  fontWeight: '400',
+                  letterSpacing: '0.05em',
+                  color: active ? 'var(--slate)' : 'var(--mid)',
+                  textTransform: 'uppercase',
+                  borderBottom: active ? '2px solid var(--terra)' : '2px solid transparent',
+                  paddingBottom: '2px',
+                  transition: 'color 0.15s',
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
+          <Link href="/contact" className="btn-slate btn" style={{ fontSize: '0.72rem', padding: '0.5em 1.2em' }}>
             Contact
           </Link>
         </nav>
@@ -86,7 +89,7 @@ export default function Nav() {
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            color: 'var(--paper-on-dark)',
+            color: 'var(--slate)',
             fontSize: '1.4rem',
           }}
           className="mobile-menu-btn"
@@ -99,8 +102,8 @@ export default function Nav() {
       {/* Mobile menu */}
       {open && (
         <div style={{
-          background: 'var(--bg-dark-2)',
-          borderTop: '1px solid var(--bg-dark-border)',
+          background: 'var(--cream-dark)',
+          borderTop: '1px solid var(--rule)',
           padding: '1.5rem 2rem',
         }}>
           {[...NAV_LINKS, { href: '/contact', label: 'Contact' }].map(({ href, label }) => (
@@ -111,10 +114,10 @@ export default function Nav() {
               style={{
                 display: 'block',
                 fontFamily: 'var(--sans)',
-                fontSize: '0.9rem',
-                color: 'var(--paper-on-dark)',
-                padding: '0.6rem 0',
-                borderBottom: '1px solid var(--bg-dark-border)',
+                fontSize: '0.88rem',
+                color: 'var(--ink)',
+                padding: '0.65rem 0',
+                borderBottom: '1px solid var(--rule)',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase',
               }}
