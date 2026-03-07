@@ -56,7 +56,7 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
         justifyContent: 'space-between',
       }}>
         <span style={{
-          fontFamily: 'var(--mono)',
+          fontFamily: 'var(--sans)',
           fontSize: '0.65rem',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
@@ -65,7 +65,7 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
           Ecosystem Architecture
         </span>
         <span style={{
-          fontFamily: 'var(--mono)',
+          fontFamily: 'var(--sans)',
           fontSize: '0.6rem',
           color: textMuted,
           letterSpacing: '0.06em',
@@ -89,9 +89,9 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
           }}>
             {/* Layer number */}
             <span style={{
-              fontFamily: 'var(--mono)',
+              fontFamily: 'var(--sans)',
               fontSize: '0.7rem',
-              color: item.active ? 'var(--gold)' : textMuted,
+              color: item.active ? 'var(--terra)' : textMuted,
               letterSpacing: '0.05em',
             }}>
               {item.layer}
@@ -109,12 +109,12 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
                   {item.name}
                 </span>
                 <span style={{
-                  fontFamily: 'var(--mono)',
+                  fontFamily: 'var(--sans)',
                   fontSize: '0.6rem',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: item.active ? 'var(--gold)' : textMuted,
-                  border: `1px solid ${item.active ? 'var(--gold)' : border}`,
+                  color: item.active ? 'var(--terra)' : textMuted,
+                  border: `1px solid ${item.active ? 'var(--terra)' : border}`,
                   padding: '0.1em 0.4em',
                 }}>
                   {item.label}
@@ -127,7 +127,7 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
 
             {/* Note */}
             <span style={{
-              fontFamily: 'var(--mono)',
+              fontFamily: 'var(--sans)',
               fontSize: '0.58rem',
               color: textMuted,
               letterSpacing: '0.06em',
@@ -147,7 +147,7 @@ export default function EcosystemArchitecture({ dark = false }: { dark?: boolean
         background: dark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.03)',
       }}>
         <p style={{
-          fontFamily: 'var(--mono)',
+          fontFamily: 'var(--sans)',
           fontSize: '0.62rem',
           color: textMuted,
           letterSpacing: '0.04em',
