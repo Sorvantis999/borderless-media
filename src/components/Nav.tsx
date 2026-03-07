@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -13,7 +13,15 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [mobile, setMobile] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   return (
     <header style={{
@@ -31,7 +39,7 @@ export default function Nav() {
         height: '100%',
       }}>
         {/* Wordmark */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
           <span style={{
             fontFamily: 'var(--serif)',
             fontSize: '1.2rem',
@@ -42,8 +50,7 @@ export default function Nav() {
             Borderless Media
           </span>
           <span style={{
-            width: '4px',
-            height: '4px',
+            width: '4px', height: '4px',
             borderRadius: '50%',
             background: 'var(--terra)',
             display: 'inline-block',
@@ -53,54 +60,67 @@ export default function Nav() {
         </Link>
 
         {/* Desktop nav */}
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          {NAV_LINKS.map(({ href, label }) => {
-            const active = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                style={{
-                  fontFamily: 'var(--sans)',
-                  fontSize: '0.78rem',
-                  fontWeight: '400',
-                  letterSpacing: '0.05em',
-                  color: active ? 'var(--slate)' : 'var(--mid)',
-                  textTransform: 'uppercase',
-                  borderBottom: active ? '2px solid var(--terra)' : '2px solid transparent',
-                  paddingBottom: '2px',
-                  transition: 'color 0.15s',
-                }}
-              >
-                {label}
-              </Link>
-            );
-          })}
-          <Link href="/contact" className="btn-slate btn" style={{ fontSize: '0.72rem', padding: '0.5em 1.2em' }}>
-            Contact
-          </Link>
-        </nav>
+        {!mobile && (
+          <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            {NAV_LINKS.map(({ href, label }) => {
+              const active = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  style={{
+                    fontFamily: 'var(--sans)',
+                    fontSize: '0.78rem',
+                    fontWeight: '400',
+                    letterSpacing: '0.05em',
+                    color: active ? 'var(--slate)' : 'var(--mid)',
+                    textTransform: 'uppercase',
+                    borderBottom: active ? '2px solid var(--terra)' : '2px solid transparent',
+                    paddingBottom: '2px',
+                    transition: 'color 0.15s',
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+            <Link href="/contact" style={{
+              display: 'inline-block',
+              fontFamily: 'var(--sans)',
+              fontSize: '0.72rem',
+              fontWeight: 500,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              padding: '0.5em 1.2em',
+              border: '1.5px solid var(--slate)',
+              color: 'var(--slate)',
+              transition: 'background 0.2s, color 0.2s',
+            }}>
+              Contact
+            </Link>
+          </nav>
+        )}
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          style={{
-            display: 'none',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            color: 'var(--slate)',
-            fontSize: '1.4rem',
-          }}
-          className="mobile-menu-btn"
-          aria-label="Toggle menu"
-        >
-          {open ? '✕' : '☰'}
-        </button>
+        {mobile && (
+          <button
+            onClick={() => setOpen(!open)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'var(--slate)',
+              fontSize: '1.4rem',
+            }}
+            aria-label="Toggle menu"
+          >
+            {open ? '✕' : '☰'}
+          </button>
+        )}
       </div>
 
       {/* Mobile menu */}
-      {open && (
+      {open && mobile && (
         <div style={{
           background: 'var(--cream-dark)',
           borderTop: '1px solid var(--rule)',
@@ -127,13 +147,6 @@ export default function Nav() {
           ))}
         </div>
       )}
-
-      <style jsx global>{`
-        @media (max-width: 768px) {
-          nav { display: none !important; }
-          .mobile-menu-btn { display: block !important; }
-        }
-      `}</style>
     </header>
   );
 }
