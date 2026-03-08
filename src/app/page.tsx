@@ -385,21 +385,20 @@ export default function HomePage() {
               <Link href="/indicators" className="btn-slate btn">View Indicators</Link>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+              {/* v5.1 canonical data from bsi_editorial view — March 2026 */}
               {[
-                { country: 'Switzerland', tier: 'Tier I', score: 87, change: '+1' },
-                { country: 'Portugal', tier: 'Tier II', score: 72, change: '-2' },
-                { country: 'Chile', tier: 'Tier II', score: 69, change: '0' },
-                { country: 'Colombia', tier: 'Tier III', score: 51, change: '-4' },
-                { country: 'Argentina', tier: 'Tier IV', score: 28, change: '-7' },
-                { country: 'Hungary', tier: 'Tier III', score: 55, change: '-1' },
+                { country: 'New Zealand', tier: 'Tier I', score: 9.7, rank: 4 },
+                { country: 'Switzerland', tier: 'Tier I', score: 9.2, rank: 9 },
+                { country: 'Uruguay', tier: 'Tier I', score: 8.8, rank: 25 },
+                { country: 'Portugal', tier: 'Tier I', score: 8.0, rank: 60 },
+                { country: 'Panama', tier: 'Tier II', score: 7.1, rank: 102 },
+                { country: 'Argentina', tier: 'Tier III', score: 6.0, rank: 129 },
               ].map((item) => {
                 const tierColor = item.tier === 'Tier I' ? 'var(--slate)'
                   : item.tier === 'Tier II' ? 'var(--slate-mid)'
                   : item.tier === 'Tier III' ? 'var(--terra-muted)'
                   : 'var(--terra)';
-                const changeColor = item.change.startsWith('-') ? 'var(--terra)'
-                  : item.change === '0' ? 'var(--light)'
-                  : '#2D7A4F';
+
                 return (
                   <div key={item.country} className="card" style={{ padding: '1.25rem' }}>
                     <div style={{
@@ -427,12 +426,11 @@ export default function HomePage() {
                         {item.score}
                       </span>
                       <span style={{
-                        fontFamily: 'var(--sans)',
-                        fontSize: '0.68rem',
-                        fontWeight: 500,
-                        color: changeColor,
+                        fontFamily: 'var(--mono)',
+                        fontSize: '0.62rem',
+                        color: 'var(--light)',
                       }}>
-                        {item.change}
+                        #{item.rank}
                       </span>
                     </div>
                   </div>
