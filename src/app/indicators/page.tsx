@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: 'The Borderless Sovereignty Index: a 10-layer sovereign risk framework for jurisdictional evaluation.',
 };
 
+// BSI layer architecture — qualitative descriptions map to v5.1 factors
 const BSI_LAYERS = [
   { num: '01', name: 'Institutional Coherence', desc: 'Alignment between formal institutions and operational reality.' },
   { num: '02', name: 'Legal Clarity', desc: 'Predictability of legal outcomes, property rights, and contract enforcement.' },
@@ -19,19 +20,57 @@ const BSI_LAYERS = [
   { num: '10', name: 'Economic Resilience', desc: 'External balance, reserve adequacy, and structural economic capacity.' },
 ];
 
+// v5.1 canonical data — derived from bsi_editorial view (Supabase: akiskinwedtktkmmcdta)
+// composite = v51_score_100 / 10. Tier from scoring bands. Last sync: March 2026.
 const COUNTRIES = [
-  { country: 'Switzerland', tier: 'I', score: 87, change: +1, region: 'Europe', highlights: ['Strong institutional coherence', 'Deep capital mobility', 'Treaty network stability'] },
-  { country: 'Singapore', tier: 'I', score: 85, change: 0, region: 'Asia-Pacific', highlights: ['Legal clarity', 'Capital mobility', 'Tax architecture'] },
-  { country: 'New Zealand', tier: 'I', score: 83, change: -1, region: 'Oceania', highlights: ['Civil society', 'Institutional coherence', 'Geopolitical positioning'] },
-  { country: 'Portugal', tier: 'II', score: 72, change: -2, region: 'Europe', highlights: ['Migration infrastructure', 'Tax architecture', 'Legal system'] },
-  { country: 'Uruguay', tier: 'II', score: 71, change: +2, region: 'Latin America', highlights: ['Regional outlier', 'Capital mobility', 'Institutional stability'] },
-  { country: 'Chile', tier: 'II', score: 69, change: 0, region: 'Latin America', highlights: ['Strongest Andean score', 'Capital mobility', 'Geopolitical neutrality'] },
-  { country: 'Panama', tier: 'II', score: 66, change: -1, region: 'Latin America', highlights: ['Banking infrastructure', 'Territorial tax', 'Migration program'] },
-  { country: 'Hungary', tier: 'III', score: 55, change: -1, region: 'Europe', highlights: ['EU access', 'Executive expansion risk', 'Judicial independence declining'] },
-  { country: 'Colombia', tier: 'III', score: 51, change: -4, region: 'Latin America', highlights: ['Fiscal deterioration', 'Capital control risk rising', 'Institutional pressure'] },
-  { country: 'Turkey', tier: 'III', score: 44, change: -3, region: 'Eurasia', highlights: ['Citizenship program active', 'Central bank independence low', 'Currency risk'] },
-  { country: 'Argentina', tier: 'IV', score: 28, change: -7, region: 'Latin America', highlights: ['Capital controls active', 'Fiscal instability', 'Restructuring environment'] },
-  { country: 'Venezuela', tier: 'IV', score: 14, change: 0, region: 'Latin America', highlights: ['Comprehensive controls', 'Institutional collapse', 'No-go zone'] },
+  {
+    country: 'New Zealand', tier: 'I', score: 9.7, rank: 4, region: 'Oceania',
+    highlights: ['Top-tier institutional coherence', 'Strong capital mobility', 'High relocation viability'],
+  },
+  {
+    country: 'Switzerland', tier: 'I', score: 9.2, rank: 9, region: 'Europe',
+    highlights: ['Lump-sum tax architecture', 'Deep capital infrastructure', 'Treaty network stability'],
+  },
+  {
+    country: 'Uruguay', tier: 'I', score: 8.8, rank: 25, region: 'Latin America',
+    highlights: ['Regional institutional outlier', '11-year tax holiday', 'Strong capital safety'],
+  },
+  {
+    country: 'Singapore', tier: 'I', score: 8.6, rank: 31, region: 'Asia-Pacific',
+    highlights: ['Perfect institutional score', 'Territorial tax', 'Legal clarity apex'],
+  },
+  {
+    country: 'Hungary', tier: 'I', score: 8.4, rank: 37, region: 'Europe',
+    highlights: ['EU access', 'CBI programme active', 'F9 medium risk — monitor'],
+  },
+  {
+    country: 'Portugal', tier: 'I', score: 8.0, rank: 60, region: 'Europe',
+    highlights: ['Strong institutional Layer A', 'EU 5-year naturalization', 'F6 tax norm at floor'],
+  },
+  {
+    country: 'Chile', tier: 'I', score: 7.7, rank: 73, region: 'Latin America',
+    highlights: ['Strongest Andean score', 'Strong macro fundamentals', 'Capital safety LOW'],
+  },
+  {
+    country: 'Panama', tier: 'II', score: 7.1, rank: 102, region: 'Latin America',
+    highlights: ['Banking infrastructure depth', 'Territorial taxation', 'Capital mobility leader'],
+  },
+  {
+    country: 'Argentina', tier: 'III', score: 6.0, rank: 129, region: 'Latin America',
+    highlights: ['Macro F5 near floor', 'Structural reform in progress', 'Capital control history'],
+  },
+  {
+    country: 'Colombia', tier: 'III', score: 5.7, rank: 135, region: 'Latin America',
+    highlights: ['Fiscal deterioration', 'Low capital viability', 'Institutional pressure active'],
+  },
+  {
+    country: 'Turkey', tier: 'III', score: 4.7, rank: 170, region: 'Eurasia',
+    highlights: ['CBI programme active', 'Macro F5 severely depressed', 'Lira risk structural'],
+  },
+  {
+    country: 'Venezuela', tier: 'IV', score: 3.7, rank: 197, region: 'Latin America',
+    highlights: ['Institutional collapse', 'No capital mobility', 'No-go zone'],
+  },
 ];
 
 const TIER_COLORS: Record<string, string> = {
@@ -145,7 +184,7 @@ export default function IndicatorsPage() {
             borderBottom: '1px solid var(--rule)',
             paddingBottom: '0.75rem',
           }}>
-            <span className="eyebrow" style={{ margin: 0 }}>Current Scores — {new Date().getFullYear()} Index</span>
+            <span className="eyebrow" style={{ margin: 0 }}>Current Scores — v5.1 Index · 217 Countries</span>
             <span style={{
               fontFamily: 'var(--mono)',
               fontSize: '0.6rem',
@@ -209,9 +248,9 @@ export default function IndicatorsPage() {
                     <span style={{
                       fontFamily: 'var(--mono)',
                       fontSize: '0.7rem',
-                      color: item.change > 0 ? '#2D7A4F' : item.change < 0 ? 'var(--accent)' : 'var(--light)',
+                      color: 'var(--light)',
                     }}>
-                      {item.change > 0 ? '+' : ''}{item.change !== 0 ? item.change : '—'}
+                      #{item.rank}
                     </span>
                   </div>
                 </div>
@@ -228,7 +267,7 @@ export default function IndicatorsPage() {
                     left: 0,
                     top: 0,
                     height: '100%',
-                    width: `${item.score}%`,
+                    width: `${item.score * 10}%`,
                     background: TIER_COLORS[item.tier],
                     transition: 'width 0.3s',
                   }} />
@@ -264,7 +303,7 @@ export default function IndicatorsPage() {
           }}>
             <p style={{ fontSize: '0.78rem', color: 'var(--mid)', lineHeight: 1.6 }}>
               <strong style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Note: </strong>
-              BSI scores are research outputs representing structural conditions at a given point in time. They are not recommendations regarding residency, citizenship acquisition, or capital allocation. Individual suitability assessment requires advisory engagement. Full methodology is described in the <Link href="/method" style={{ color: 'var(--ink)', borderBottom: '1px solid var(--rule)' }}>Method</Link> section.
+              BSI scores are research outputs representing structural conditions at a given point in time. They are not recommendations regarding residency, citizenship acquisition, or capital allocation. Individual suitability assessment requires advisory engagement. Full methodology is described in the <Link href="/method" style={{ color: 'var(--ink)', borderBottom: '1px solid var(--rule)' }}>Method</Link> section. Index covers 217 jurisdictions; selected countries shown.
             </p>
           </div>
         </div>
