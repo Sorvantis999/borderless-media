@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <div className="container">
           <div style={{ maxWidth: '720px' }}>
             <LegalSection title="1. Who We Are">
-              <p>Borderless Media LLC is a Minnesota limited liability company that operates this website and the affiliated publications The Long Memo and Borderless Living. Our contact address is in Woodbury, Minnesota, United States.</p>
+              <p>Borderless Media LLC is a Minnesota limited liability company that operates this website and the affiliated publications The Long Memo and Borderless Living.</p>
               <p>This policy explains what personal information we collect, why we collect it, and how we handle it. We take the minimal-collection principle seriously: we do not collect data we do not need.</p>
             </LegalSection>
 
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             </LegalSection>
 
             <LegalSection title="7. Your Rights">
-              <p>You may request access to, correction of, or deletion of personal information we hold about you by contacting us through the <a href="/contact" style={{ color: 'var(--slate)' }}>contact page</a>. We will respond within 30 days.</p>
+              <p>You may request access to, correction of, or deletion of personal information we hold about you by emailing <a href="mailto:legal@sorvantis.com" style={{ color: 'var(--slate)' }}>legal@sorvantis.com</a>. We will respond within 30 days.</p>
               <p>If you are located in the European Economic Area or United Kingdom, you may have additional rights under GDPR or UK GDPR. This site is operated from the United States and is not targeted at EEA or UK residents. If you are in one of those jurisdictions and have privacy concerns, please contact us directly.</p>
             </LegalSection>
 
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
             </LegalSection>
 
             <LegalSection title="11. Contact">
-              <p>Privacy questions or requests: <a href="/contact" style={{ color: 'var(--slate)' }}>Contact page</a> or write to Borderless Media LLC, Woodbury, Minnesota, United States.</p>
+              <p>Privacy questions or requests: <a href="mailto:legal@sorvantis.com" style={{ color: 'var(--slate)' }}>legal@sorvantis.com</a></p>
             </LegalSection>
           </div>
         </div>

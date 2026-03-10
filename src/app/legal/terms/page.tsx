@@ -66,7 +66,7 @@ export default function TermsPage() {
             </LegalSection>
 
             <LegalSection title="10. Contact">
-              <p>Questions about these terms: <a href="/contact" style={{ color: 'var(--slate)' }}>Contact page</a> or write to Borderless Media LLC, Woodbury, Minnesota.</p>
+              <p>Questions about these terms: <a href="mailto:legal@sorvantis.com" style={{ color: 'var(--slate)' }}>legal@sorvantis.com</a></p>
             </LegalSection>
           </div>
         </div>
