@@ -7,6 +7,7 @@ export default function ContactPage() {
 
   const INQUIRY_TYPES = [
     { id: 'media', label: 'Research inquiry', desc: 'Questions about published research, methodology, or data.' },
+    { id: 'pitch', label: 'Pitch / submit analysis', desc: 'Researchers, former officials, and practitioners with direct knowledge. We read everything.' },
     { id: 'institutional', label: 'Institutional / licensing', desc: 'Data licensing, research partnership, or institutional access.' },
     { id: 'press', label: 'Press / editorial', desc: 'Media requests, citation permissions, editorial contact.' },
     { id: 'concierge', label: 'Advisory inquiry', desc: 'Client-specific needs — will be referred to Borderless Concierge.' },
