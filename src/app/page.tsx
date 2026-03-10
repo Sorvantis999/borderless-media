@@ -3,7 +3,7 @@ import EcosystemArchitecture from '@/components/EcosystemArchitecture';
 
 const HERO_IMAGE = 'https://images.pexels.com/photos/8828679/pexels-photo-8828679.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600';
 const GLOBE_IMAGE = 'https://images.pexels.com/photos/1098526/pexels-photo-1098526.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=900';
-const CHESS_IMAGE = '/chess-editorial.jpeg';
+const PASSPORTS_IMAGE = '/passports-editorial.jpeg';
 
 const FEATURED = [
   {
@@ -154,10 +154,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '5rem', alignItems: 'start' }}>
             <div>
               <div style={{ position: 'relative', marginBottom: '2rem' }}>
-                <img src={CHESS_IMAGE} alt="Chess pieces — strategic positioning" style={{ width: '100%', height: '320px', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'var(--slate)', padding: '0.75rem 1rem' }}>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '0.62rem', color: 'rgba(237,232,220,0.6)', letterSpacing: '0.05em' }}>© Adobe Stock</span>
-                </div>
+                <img src={PASSPORTS_IMAGE} alt="Passports from multiple countries" style={{ width: '100%', height: '320px', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <span className="eyebrow">What We Publish</span>
               <h2 style={{ marginBottom: '1.25rem' }}>The information layer.</h2>
@@ -165,7 +162,7 @@ export default function HomePage() {
                 The information available to internationally mobile individuals is systematically inadequate — fragmented, commercially compromised, or designed for audiences with different risk profiles.
               </p>
               <p style={{ color: 'var(--mid)', marginBottom: '2rem', fontSize: '0.92rem' }}>
-                We publish what we find. We do not publish what to do about it.
+                We make risk legible for those who need to act.
               </p>
               <Link href="/about" className="btn">About Borderless</Link>
             </div>
