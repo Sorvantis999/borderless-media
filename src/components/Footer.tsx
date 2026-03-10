@@ -90,6 +90,8 @@ export default function Footer() {
               { href: '/method', label: 'Method' },
               { href: '/about', label: 'About' },
               { href: '/contact', label: 'Contact' },
+              { href: '/legal/terms', label: 'Terms' },
+              { href: '/legal/privacy', label: 'Privacy' },
             ].map(({ href, label }) => (
               <Link key={href} href={href} style={{
                 fontSize: '0.72rem',
