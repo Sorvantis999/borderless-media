@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 28" width="310" height="28">
+  <defs>
+    <style>
+      .nav-text { font-family: 'DM Serif Display', Georgia, serif; font-size: 19px; fill: #2b4870; }
+    </style>
+  </defs>
+  <text class="nav-text" x="0" y="20">Borderless Media</text>
+  <circle cx="297" cy="14" r="3.5" fill="#b85c38"/>
+</svg>

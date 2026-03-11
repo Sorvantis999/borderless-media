@@ -38,24 +38,14 @@ export default function Nav() {
         height: '100%',
       }}>
         {/* Wordmark */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-          <span style={{
-            fontFamily: 'var(--serif)',
-            fontSize: '1.2rem',
-            color: 'var(--slate)',
-            letterSpacing: '0.01em',
-            lineHeight: 1,
-          }}>
-            Borderless Media
-          </span>
-          <span style={{
-            width: '4px', height: '4px',
-            borderRadius: '50%',
-            background: 'var(--terra)',
-            display: 'inline-block',
-            verticalAlign: 'middle',
-            marginBottom: '2px',
-          }} />
+        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+          <img
+            src="/borderless-media-nav.svg"
+            alt="Borderless Media"
+            width={220}
+            height={20}
+            style={{ display: 'block', height: '20px', width: 'auto' }}
+          />
         </Link>
 
         {/* Desktop nav */}
