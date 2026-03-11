@@ -42,9 +42,9 @@ export default function Nav() {
           <img
             src="/borderless-media-nav.svg"
             alt="Borderless Media"
-            width={220}
-            height={20}
-            style={{ display: 'block', height: '20px', width: 'auto' }}
+            width={310}
+            height={28}
+            style={{ display: 'block', height: '28px', width: 'auto' }}
           />
         </Link>
 
