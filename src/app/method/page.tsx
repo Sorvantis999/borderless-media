@@ -2,8 +2,18 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Method',
-  description: 'Research methodology, sourcing discipline, and editorial posture at Borderless Media.',
+  title: 'Research Method — Sourcing, Uncertainty Handling & Editorial Posture',
+  description:
+    'How Borderless Media conducts geopolitical research: primary source discipline, uncertainty notation, update cadence, and the hard boundary between analysis and advice.',
+  openGraph: {
+    title: 'Research Method — Sourcing, Uncertainty Handling & Editorial Posture',
+    description:
+      'Primary-sourced. Independent from programs and referrals. How Borderless Media researches and what it publishes.',
+    url: 'https://borderlessmediallc.com/method',
+  },
+  alternates: {
+    canonical: 'https://borderlessmediallc.com/method',
+  },
 };
 
 export default function MethodPage() {
