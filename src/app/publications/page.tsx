@@ -3,8 +3,18 @@ import Link from 'next/link';
 import EcosystemArchitecture from '@/components/EcosystemArchitecture';
 
 export const metadata: Metadata = {
-  title: 'Publications',
-  description: 'The four publications of the Borderless ecosystem: Media, Living, The Long Memo, and Concierge.',
+  title: 'Publications — The Borderless Ecosystem Architecture',
+  description:
+    'Four publications. One architecture. The Long Memo (free geopolitical analysis), Borderless Living (paid sovereign strategy), Borderless Media (research), and Borderless Concierge (advisory).',
+  openGraph: {
+    title: 'Publications — The Borderless Ecosystem Architecture',
+    description:
+      'Intelligence, strategy, political analysis, and judgment — each in a distinct publication, with a distinct function.',
+    url: 'https://borderlessmediallc.com/publications',
+  },
+  alternates: {
+    canonical: 'https://borderlessmediallc.com/publications',
+  },
 };
 
 const PUBLICATIONS = [
