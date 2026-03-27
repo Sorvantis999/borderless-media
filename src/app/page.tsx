@@ -68,14 +68,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What we are / aren't */}
+      {/* What we are / aren't — fixed: responsive grid + "Who reads this" replaces "The distinction" */}
       <section style={{ background: 'var(--cream)', borderBottom: '1px solid var(--rule)', padding: '0' }}>
         <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
+          <div className="grid-3-editorial">
             {[
-              { label: 'We publish', items: ['Geopolitical analysis', 'Jurisdictional intelligence', 'Migration policy monitoring', 'Governance & institutional research'], accent: 'var(--slate)' },
-              { label: 'We do not publish', items: ['Individualized advice', 'Program referrals', 'Tactical recommendations', 'Client-specific assessments'], accent: 'var(--mid)' },
-              { label: 'The distinction', items: ['Analysis is not judgment.', 'Findings are not instructions.', 'Intelligence enables decisions.', 'Decisions require counsel.'], accent: 'var(--terra)', italic: true },
+              {
+                label: 'We publish',
+                items: ['Geopolitical analysis', 'Jurisdictional intelligence', 'Migration policy monitoring', 'Governance & institutional research'],
+                accent: 'var(--slate)',
+              },
+              {
+                label: 'We do not publish',
+                items: ['Individualized advice', 'Program referrals', 'Tactical recommendations', 'Client-specific assessments'],
+                accent: 'var(--mid)',
+              },
+              {
+                label: 'Who reads this',
+                items: ['Internationally mobile professionals', 'Family offices & institutions', 'Researchers and former officials', 'Readers building sovereign strategy'],
+                accent: 'var(--terra)',
+              },
             ].map((col, i) => (
               <div key={col.label} style={{ padding: '2.5rem 2rem', borderLeft: i === 0 ? 'none' : '1px solid var(--rule)', borderTop: `3px solid ${col.accent}` }}>
                 <span style={{ fontFamily: 'var(--sans)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: col.accent, display: 'block', marginBottom: '1rem' }}>
@@ -83,7 +95,7 @@ export default function HomePage() {
                 </span>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {col.items.map(item => (
-                    <li key={item} style={{ fontSize: '0.85rem', color: col.italic ? 'var(--ink)' : 'var(--mid)', padding: '0.4rem 0', borderBottom: '1px solid var(--rule)', fontStyle: col.italic ? 'italic' : 'normal', fontFamily: col.italic ? 'var(--body)' : 'var(--sans)', lineHeight: 1.5 }}>
+                    <li key={item} style={{ fontSize: '0.85rem', color: 'var(--mid)', padding: '0.4rem 0', borderBottom: '1px solid var(--rule)', fontFamily: 'var(--sans)', lineHeight: 1.5 }}>
                       {item}
                     </li>
                   ))}
@@ -94,7 +106,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured reading — 2 TLM + 2 BL */}
+      {/* Featured reading — 2 TLM + 2 BL — fixed: responsive grid */}
       <section className="section" style={{ background: 'var(--cream-dark)' }}>
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '2.5rem', borderBottom: '1px solid var(--rule)', paddingBottom: '1rem' }}>
@@ -104,17 +116,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
+          <div className="grid-eq-2">
             {(['TLM', 'BL'] as const).map((pub) => {
               const articles = FEATURED.filter(f => f.publication === pub);
               const isPub = pub === 'TLM';
               return (
                 <div key={pub}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: `2px solid ${isPub ? 'var(--slate)' : 'var(--terra)'}` }}>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: isPub ? 'var(--slate)' : 'var(--terra)', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'var(--sans)', fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: isPub ? 'var(--slate)' : 'var(--terra)', fontWeight: 600 }}>
                       {isPub ? 'The Long Memo' : 'Borderless Living'}
                     </span>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: '0.55rem', color: 'var(--light)', letterSpacing: '0.06em' }}>
+                    <span style={{ fontFamily: 'var(--sans)', fontSize: '0.55rem', color: 'var(--light)', letterSpacing: '0.06em' }}>
                       {isPub ? '— Free · Geopolitical Analysis' : '— Paid · Relocation & Sovereign Strategy'}
                     </span>
                   </div>
@@ -148,10 +160,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What we publish — chess image + grid */}
+      {/* What we publish — fixed: responsive grid */}
       <section className="section" style={{ background: 'var(--cream)', borderTop: '1px solid var(--rule)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '5rem', alignItems: 'start' }}>
+          <div className="grid-split">
             <div>
               <div style={{ position: 'relative', marginBottom: '2rem' }}>
                 <img src={PASSPORTS_IMAGE} alt="Passports from multiple countries" style={{ width: '100%', height: '320px', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
@@ -189,10 +201,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ecosystem */}
+      {/* Ecosystem — fixed: responsive grid */}
       <section className="dark-section section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+          <div className="grid-ecosystem">
             <div>
               <span className="eyebrow eyebrow-slate">Ecosystem</span>
               <h2 style={{ color: 'var(--paper-on-dark)', marginBottom: '1.25rem' }}>Intelligence is one layer of four.</h2>
