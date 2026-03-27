@@ -98,12 +98,24 @@ export default function Nav() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: 'var(--slate)',
-              fontSize: '1.4rem',
+              padding: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '32px',
+              height: '32px',
             }}
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
           >
-            {open ? '✕' : '☰'}
+            {open ? (
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L16 16M16 2L2 16" stroke="var(--slate)" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            ) : (
+              <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1H22M0 8H22M0 15H22" stroke="var(--slate)" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            )}
           </button>
         )}
       </div>
