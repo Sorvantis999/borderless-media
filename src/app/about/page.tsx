@@ -2,8 +2,18 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'Mission, editorial posture, and independence statement for Borderless Media.',
+  title: 'About Borderless Media — Independent Geopolitical Intelligence',
+  description:
+    'Borderless Media is an independent geopolitical research publication. No program affiliations. No referral commissions. Primary-sourced analysis for internationally mobile individuals.',
+  openGraph: {
+    title: 'About Borderless Media — Independent Geopolitical Intelligence',
+    description:
+      'No program affiliations. No referral commissions. Primary-sourced geopolitical analysis for internationally mobile individuals and institutions.',
+    url: 'https://borderlessmediallc.com/about',
+  },
+  alternates: {
+    canonical: 'https://borderlessmediallc.com/about',
+  },
 };
 
 export default function AboutPage() {
