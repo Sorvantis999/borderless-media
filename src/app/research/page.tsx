@@ -2,8 +2,18 @@ import type { Metadata } from 'next';
 import { getTLMFeed, getBLFeed, type FeedItem } from '@/lib/rss';
 
 export const metadata: Metadata = {
-  title: 'Research',
-  description: 'Best pieces and recent writing from The Long Memo and Borderless Living.',
+  title: 'Research Archive — Geopolitical Analysis & Sovereign Risk Intelligence',
+  description:
+    'Archive of geopolitical analysis, sovereign risk assessments, jurisdictional intelligence, and migration policy research from The Long Memo and Borderless Living.',
+  openGraph: {
+    title: 'Research Archive — Geopolitical Analysis & Sovereign Risk Intelligence',
+    description:
+      'Geopolitical analysis, sovereign risk, jurisdictional intelligence, and migration policy research. Independent. Unsponsored. Primary-sourced.',
+    url: 'https://borderlessmediallc.com/research',
+  },
+  alternates: {
+    canonical: 'https://borderlessmediallc.com/research',
+  },
 };
 
 export const revalidate = 3600; // ISR: rebuild this page hourly
